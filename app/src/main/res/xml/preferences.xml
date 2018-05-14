@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <ListPreference
+        android:key="@string/pref_key_distance_units"
+        android:title="Distance Units"
+        android:defaultValue="miles"
+        android:entries="@array/Unit_Names"
+        android:entryValues="@array/Unit_Codes"
+        android:summary="%s"
+        />
+    <ListPreference
+        android:key="@string/pref_key_gps_interval"
+        android:title="GPS Interval"
+        android:defaultValue="10000"
+        android:entries="@array/GPS_Interval_Names"
+        android:entryValues="@array/GPS_Interval_Codes"
+        android:summary="%s"
+        />
+    <EditTextPreference
+        android:key="@string/pref_key_default_contact"
+        android:title="Default Contact"
+        android:hint="No Contact Set"
+        android:dialogTitle="Default Contact"
+        android:inputType="number"
+        android:summary="No contact set"
+        />
+
+</PreferenceScreen>

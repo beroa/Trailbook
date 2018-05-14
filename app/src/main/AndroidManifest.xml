@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.trailbook.trailbook">
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppTheme">
+
+        <activity
+            android:name=".launcher.ActivityLauncher"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ActivitySettings"
+            android:label="@string/title_activity_settings" />
+
+        <activity
+            android:name=".recording.ActivityRecording"
+            android:theme="@style/Theme.NoActionBar"
+            />
+
+        <activity
+            android:name=".saved_trail.ActivitySavedTrail"
+            />
+
+        <activity android:name=".recording.ActivityStartTrail"
+            android:theme="@style/Theme.NoActionBar" />
+
+        <activity android:name=".recording.ActivityStartRun"
+            android:theme="@style/Theme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAHy3ir9UYLuotzz3fd2m-qK1BjhbAimr0"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>

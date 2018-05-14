@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.trailbook.trailbook.recording.ActivityRecording">
+
+    <TextView
+        android:id="@+id/tv_new_trail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Start New Trail"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_start_trail_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        android:text="Trail Name"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_name"
+        app:layout_constraintEnd_toStartOf="@+id/et_start_trail_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_start_trail_name"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <EditText
+        android:id="@+id/et_start_trail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_recording_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_trail_required" />
+
+    <TextView
+        android:id="@+id/tv_start_trail_autofinish"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        android:text="Auto Finish (hrs)"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_autofinish"
+        app:layout_constraintEnd_toStartOf="@+id/et_start_trail_autofinish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_start_trail_autofinish" />
+
+    <EditText
+        android:id="@+id/et_start_trail_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_trail_contact"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_trail_optional" />
+
+    <Button
+        android:id="@+id/btn_start_trail"
+        style="@style/ButtonRound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="START TRAIL"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_start_trail_autofinish" />
+
+    <TextView
+        android:id="@+id/tv_start_trail_contact"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:text="Contact"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_contact"
+        app:layout_constraintEnd_toStartOf="@+id/et_start_trail_contact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_start_trail_contact" />
+
+    <EditText
+        android:id="@+id/et_start_trail_autofinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_trail_contact"
+        app:layout_constraintTop_toBottomOf="@+id/et_start_trail_name" />
+
+    <TextView
+        android:id="@+id/tv_start_trail_optional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Optional:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start_trail" />
+
+    <TextView
+        android:id="@+id/tv_start_trail_required"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Required:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_trail" />
+
+</android.support.constraint.ConstraintLayout>

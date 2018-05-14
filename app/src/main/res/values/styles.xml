@@ -1,0 +1,22 @@
+<resources>
+    <style name="Theme.BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonStyle">@style/ButtonRound</item>
+    </style>
+
+    <style name="Theme.AppTheme" parent="Theme.BaseAppTheme">
+    </style>
+
+    <style name="Theme.NoActionBar" parent="Theme.BaseAppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ButtonRound" parent="Widget.AppCompat.Button">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/button_round</item>
+        <item name="android:textColor">@color/colorPrimaryDarker</item>
+    </style>
+</resources>
