@@ -200,10 +200,10 @@ public class ActivityRecording extends AppCompatActivity {
         }
     }
     private String[] contactPicked(Intent data) {
-        Cursor cursor = null;
+        Cursor cursor;
         try {
-            String phoneNo = null ;
-            String name = null;
+            String phoneNo;
+            String name;
             // getData() method will have the Content Uri of the selected contact
             Uri uri = data.getData();
             //Query the content uri
@@ -471,7 +471,9 @@ public class ActivityRecording extends AppCompatActivity {
         if (mFusedLocationClient != null && mLocationCallback != null) {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         }
-        wakeLock.release();
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+        }
         mNotificationManager.cancel(NOTIFICATION_ID_RECORDING);
         finish();
     }
