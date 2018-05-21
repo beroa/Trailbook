@@ -54,6 +54,7 @@ import com.trailbook.trailbook.database.TrailData;
 import com.trailbook.trailbook.launcher.ActivityLauncher;
 import com.trailbook.trailbook.saved_trail.ActivitySavedTrail;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -114,7 +115,7 @@ public class ActivityRecording extends AppCompatActivity {
         showRecordingNotification();
         startRecording();
 
-        Button end = (Button) findViewById(R.id.btn_end);
+        Button end = findViewById(R.id.btn_end);
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +123,7 @@ public class ActivityRecording extends AppCompatActivity {
             }
         });
 
-        Button send = (Button) findViewById(R.id.btn_send);
+        Button send = findViewById(R.id.btn_send);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,10 +166,10 @@ public class ActivityRecording extends AppCompatActivity {
             }
         });
 
-        TextView trailname = (TextView) findViewById(R.id.tv_recording_name);
-        tv_duration = (TextView) findViewById(R.id.tv_recording_duration);
-        tv_distance = (TextView) findViewById(R.id.tv_recording_distance);
-        tv_speed = (TextView) findViewById(R.id.tv_recording_speed);
+        TextView trailname = findViewById(R.id.tv_recording_name);
+        tv_duration = findViewById(R.id.tv_recording_duration);
+        tv_distance = findViewById(R.id.tv_recording_distance);
+        tv_speed = findViewById(R.id.tv_recording_speed);
         trailname.setText(trailData.getTrailName());
         updateDistanceText();
         updateSpeedText(1);
@@ -191,7 +192,7 @@ public class ActivityRecording extends AppCompatActivity {
                     if (coords != null && !coords.isEmpty()) {
                         LatLng currLoc = coords.get(coords.size() - 1);
                         String message = "My last location was (" + currLoc.latitude + ", " + currLoc.longitude + ")\n - Sent by TrailBook";
-                        sendSMS(contactPicked(data)[1], message);
+                        sendSMS(Objects.requireNonNull(contactPicked(data))[1], message);
                     }
                     break;
             }

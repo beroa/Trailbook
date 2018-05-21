@@ -14,8 +14,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Start New Trail"
-        android:textSize="32dp"
+        android:text="@string/start_new_trail"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,9 +28,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="right"
-        android:text="Trail Name"
-        android:textSize="18dp"
+        android:gravity="end"
+        android:text="@string/trail_name"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_name"
         app:layout_constraintEnd_toStartOf="@+id/et_start_trail_name"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_recording_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_start_trail_required" />
 
     <TextView
@@ -57,8 +56,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="right"
-        android:text="Auto Finish (hrs)"
+        android:gravity="end"
+        android:text="@string/auto_finish_hrs"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_autofinish"
         app:layout_constraintEnd_toStartOf="@+id/et_start_trail_autofinish"
@@ -85,7 +84,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="START TRAIL"
+        android:text="@string/start_trail"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +99,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:gravity="end"
-        android:text="Contact"
+        android:text="@string/contact"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/et_start_trail_contact"
         app:layout_constraintEnd_toStartOf="@+id/et_start_trail_contact"
@@ -115,7 +114,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
-        android:text="2"
+        android:text="@string/default_autofinish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tv_start_trail_contact"
@@ -127,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Optional:"
+        android:text="@string/optional_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_start_trail" />
 
@@ -137,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Required:"
+        android:text="@string/required_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_new_trail" />
 

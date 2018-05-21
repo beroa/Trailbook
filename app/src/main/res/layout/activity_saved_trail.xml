@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="All Runs:"
+        android:text="@string/all_runs_colon"
         app:layout_constraintBottom_toTopOf="@+id/runs_frame"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_frame" />
@@ -67,7 +67,7 @@
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:padding="2dp"
-        android:text="New Run"
+        android:text="@string/new_run"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/btn_new_run"
         app:layout_constraintEnd_toStartOf="@+id/btn_new_run"

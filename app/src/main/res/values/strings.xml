@@ -11,6 +11,40 @@
     <string name="pref_key_gps_interval">gps_interval</string>
     <string name="pref_key_default_contact">default_contact</string>
 
+    <string name="duration">duration</string>
+    <string name="distance">distance</string>
+    <string name="date">date</string>
+    <string name="time">time</string>
+    <string name="speed">speed</string>
+
     <string name="new_run_of">New Run of "</string>
     <string name="launcher_empty_text">Welcome to Trailbook.\n\nYou haven\'t recorded any trails yet.\n\nWhen you are ready you can click the New Trail button below to start recording.</string>
+    <string name="new_trail">New Trail</string>
+    <string name="logo">logo</string>
+    <string name="my_trail">My Trail</string>
+
+    <string name="start_new_trail">Start New Trail</string>
+    <string name="trail_name">Trail Name</string>
+    <string name="enter_the_new_trail_name">Enter the new trail name.</string>
+
+    <string name="send_sms">SEND SMS</string>
+    <string name="all_runs_colon">All Runs:</string>
+    <string name="new_run">New Run</string>
+    <string name="contact">Contact</string>
+    <string name="auto_finish_hrs">Auto Finish (hrs)</string>
+    <string name="default_autofinish">2</string>
+    <string name="default_date">1/1/18</string>
+
+    <string name="required_colon">Required:</string>
+    <string name="display_colon">Display:</string>
+    <string name="optional_colon">Optional:</string>
+
+    <string name="start_trail">START TRAIL</string>
+    <string name="end_trail">END TRAIL</string>
+    <string name="start_run">START RUN</string>
+
+
+
+
+
 </resources>
