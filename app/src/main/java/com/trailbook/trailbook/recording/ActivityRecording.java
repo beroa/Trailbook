@@ -428,7 +428,7 @@ public class ActivityRecording extends AppCompatActivity {
                         } else {
                             // first coord
                             coords.add(c);
-                            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 12));
+                            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 15));
                         }
                         // update mPolyline
                         if (mPolyline != null) {
