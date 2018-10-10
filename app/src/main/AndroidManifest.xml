@@ -31,17 +31,21 @@
         <activity
             android:name=".recording.ActivityRecording"
             android:theme="@style/Theme.NoActionBar"
+            android:screenOrientation="portrait"
             />
 
         <activity
             android:name=".saved_trail.ActivitySavedTrail"
+            android:screenOrientation="portrait"
             />
 
         <activity android:name=".recording.ActivityStartTrail"
-            android:theme="@style/Theme.NoActionBar" />
+            android:theme="@style/Theme.NoActionBar"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".recording.ActivityStartRun"
-            android:theme="@style/Theme.NoActionBar" />
+            android:theme="@style/Theme.NoActionBar"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
