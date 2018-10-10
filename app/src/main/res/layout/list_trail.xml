@@ -6,5 +6,5 @@
     android:name="com.trailbook.trailbook.trailView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.trailbook.trailbook.launcher.TrailView"
+    tools:context="com.trailbook.app.launcher.TrailView"
     tools:listitem="@layout/list_trail_item" />

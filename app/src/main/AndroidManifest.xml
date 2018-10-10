@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.trailbook.trailbook">
+    package="com.trailbook.app">
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AppTheme">
 
         <activity
-            android:name=".launcher.ActivityLauncher"
+            android:name="com.trailbook.app.launcher.ActivityLauncher"
             android:label="@string/app_name"
             android:theme="@style/Theme.NoActionBar">
             <intent-filter>
@@ -25,25 +25,25 @@
         </activity>
 
         <activity
-            android:name=".ActivitySettings"
+            android:name="com.trailbook.app.ActivitySettings"
             android:label="@string/title_activity_settings" />
 
         <activity
-            android:name=".recording.ActivityRecording"
+            android:name="com.trailbook.app.recording.ActivityRecording"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"
             />
 
         <activity
-            android:name=".saved_trail.ActivitySavedTrail"
+            android:name="com.trailbook.app.saved_trail.ActivitySavedTrail"
             android:screenOrientation="portrait"
             />
 
-        <activity android:name=".recording.ActivityStartTrail"
+        <activity android:name="com.trailbook.app.recording.ActivityStartTrail"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".recording.ActivityStartRun"
+        <activity android:name="com.trailbook.app.recording.ActivityStartRun"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"/>
 
