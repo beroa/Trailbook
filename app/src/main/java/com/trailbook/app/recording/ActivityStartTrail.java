@@ -30,9 +30,9 @@ public class ActivityStartTrail extends AppCompatActivity {
         getLocationPermission();
 
         final EditText et_trailname = (EditText) findViewById(R.id.et_start_trail_name);
-        final EditText et_contact = (EditText) findViewById(R.id.et_start_trail_contact);
+//        final EditText et_contact = (EditText) findViewById(R.id.et_start_trail_contact);
         final EditText et_autofinish = (EditText) findViewById(R.id.et_start_trail_autofinish);
-        et_contact.setText(mSharedPreferences.getString("default_contact", ""));
+//        et_contact.setText(mSharedPreferences.getString("default_contact", ""));
 
         Button start = (Button) findViewById(R.id.btn_start_trail);
         boolean validInp = false;
@@ -49,7 +49,7 @@ public class ActivityStartTrail extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ActivityRecording.class);
                         intent.putExtra("new-trail", true);
                         intent.putExtra("trail-name", et_trailname.getText().toString());
-                        intent.putExtra("emergency-contact", et_contact.getText().toString());
+//                        intent.putExtra("emergency-contact", et_contact.getText().toString());
                         intent.putExtra("auto-finish", autofinish);
                         startActivity(intent);
                     }

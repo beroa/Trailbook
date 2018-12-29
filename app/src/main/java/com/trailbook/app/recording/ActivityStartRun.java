@@ -42,14 +42,14 @@ public class ActivityStartRun extends AppCompatActivity {
         }
 
         final TextView tv_newrun = (TextView) findViewById(R.id.tv_new_run);
-        final EditText et_contact = (EditText) findViewById(R.id.et_start_run_contact);
+//        final EditText et_contact = (EditText) findViewById(R.id.et_start_run_contact);
         final EditText et_autofinish = (EditText) findViewById(R.id.et_start_run_autofinish);
 
         String s = getString(R.string.new_run_of);
         tv_newrun.setText(String.format("%s%s\"", s, trailData.getTrailName()));
 
-        et_contact.setText(trailData.getContact());
-        et_contact.setEnabled(false);
+//        et_contact.setText(trailData.getContact());
+//        et_contact.setEnabled(false);
 
         Button start = (Button) findViewById(R.id.btn_start_run);
         start.setOnClickListener(new View.OnClickListener() {
