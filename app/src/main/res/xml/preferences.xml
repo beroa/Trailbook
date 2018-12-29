@@ -18,13 +18,13 @@
         android:entryValues="@array/GPS_Interval_Codes"
         android:summary="%s"
         />
-    <EditTextPreference
-        android:key="@string/pref_key_default_contact"
-        android:title="Default Contact"
-        android:hint="No Contact Set"
-        android:dialogTitle="Default Contact"
-        android:inputType="number"
-        android:summary="No contact set"
-        />
+    <!--<EditTextPreference-->
+        <!--android:key="@string/pref_key_default_contact"-->
+        <!--android:title="Default Contact"-->
+        <!--android:hint="No Contact Set"-->
+        <!--android:dialogTitle="Default Contact"-->
+        <!--android:inputType="number"-->
+        <!--android:summary="No contact set"-->
+        <!--/>-->
 
 </PreferenceScreen>

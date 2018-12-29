@@ -20,32 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_start_run_contact"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="end"
-        android:text="@string/contact"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_start_run_contact"
-        app:layout_constraintEnd_toStartOf="@+id/et_start_run_contact"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_start_run_contact" />
-
-    <EditText
-        android:id="@+id/et_start_run_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_start_run_contact"
-        app:layout_constraintTop_toBottomOf="@+id/tv_start_run_display" />
-
-    <TextView
         android:id="@+id/tv_start_run_autofinish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -98,14 +72,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_new_run" />
 
-    <TextView
-        android:id="@+id/tv_start_run_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/display_colon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start_run" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_start_run_display"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="@string/display_colon"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/btn_start_run" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/tv_start_run_contact"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:gravity="end"-->
+        <!--android:text="@string/contact"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/et_start_run_contact"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/et_start_run_contact"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/et_start_run_contact" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/et_start_run_contact"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:ems="10"-->
+        <!--android:inputType="number"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/tv_start_run_contact"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tv_start_run_display" />-->
 
 </android.support.constraint.ConstraintLayout>
