@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.trailbook.app.R;
 
-public class FragLauncherEmpty extends Fragment {
+public class FragLauncher_Empty extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

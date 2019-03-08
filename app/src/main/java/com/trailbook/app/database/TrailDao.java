@@ -15,9 +15,6 @@ public interface TrailDao {
     @Query("SELECT trailName FROM TrailData")
     List<String> getAllTrailNames();
 
-//    @Query("SELECT * FROM TrailData WHERE trailId IN (:trailIds)")
-//    List<TrailData> loadAllByIds(int[] trailIds);
-
     @Query("SELECT * FROM TrailData WHERE trailName LIKE :trailName LIMIT 1")
     TrailData getByName(String trailName);
 
@@ -39,6 +36,6 @@ public interface TrailDao {
     @Delete
     void delete(TrailData trail);
 
-    @Query("DELETE FROM traildata")
-    void nukeTable();
+//    @Query("DELETE FROM traildata")
+//    void nukeTable();
 }

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AppTheme">
 
         <activity
-            android:name="com.trailbook.app.launcher.ActivityLauncher"
+            android:name="com.trailbook.app.launcher.ActLauncher"
             android:label="@string/app_name"
             android:theme="@style/Theme.NoActionBar">
             <intent-filter>
@@ -30,17 +30,17 @@
             android:label="@string/title_activity_settings" />
 
         <activity
-            android:name="com.trailbook.app.recording.ActivityRecording"
+            android:name="com.trailbook.app.recording.ActRecording"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"
             />
 
         <activity
-            android:name="com.trailbook.app.saved_trail.ActivitySavedTrail"
+            android:name="com.trailbook.app.saved_trail.ActSavedTrail"
             android:screenOrientation="portrait"
             />
 
-        <activity android:name="com.trailbook.app.recording.ActivityStart"
+        <activity android:name="com.trailbook.app.recording.ActStart"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"/>
 

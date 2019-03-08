@@ -18,10 +18,7 @@ import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
 import com.trailbook.app.database.TrailData;
 
-import org.w3c.dom.Text;
-
-// starts a run of an existing trail, gets trail-id from the intent
-public class ActivityStart extends AppCompatActivity {
+public class ActStart extends AppCompatActivity {
     private boolean mLocationPermissionsGranted = false;
     String trailId;
     TrailData trailData;
@@ -29,7 +26,7 @@ public class ActivityStart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.act_start);
 
         getLocationPermission();
 
@@ -38,12 +35,11 @@ public class ActivityStart extends AppCompatActivity {
 
         Log.d("AYY", "trail-id" + trailId);
 
-        //        final EditText et_contact = (EditText) findViewById(R.id.et_start_run_contact);
-        final TextView tv_start = (TextView) findViewById(R.id.tv_start);
-        final Button start = (Button) findViewById(R.id.btn_start);
-        final EditText et_trailname = (EditText) findViewById(R.id.et_start_trailname);
+        final TextView tv_start = findViewById(R.id.tv_start);
+        final Button start = findViewById(R.id.btn_start);
+        final EditText et_trailname = findViewById(R.id.et_start_trailname);
         final TextView tv_trailname = findViewById(R.id.tv_start_trailname);
-        final EditText et_autofinish = (EditText) findViewById(R.id.et_start_autofinish);
+        final EditText et_autofinish = findViewById(R.id.et_start_autofinish);
 
         if (trailId == null) {
             // prepare for new trail
@@ -70,8 +66,6 @@ public class ActivityStart extends AppCompatActivity {
 
             et_trailname.setVisibility(View.GONE);
             tv_trailname.setVisibility(View.GONE);
-            //        et_contact.setText(trailData.getContact());
-            //        et_contact.setEnabled(false);
 
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +83,7 @@ public class ActivityStart extends AppCompatActivity {
 
     private void StartRun(String trailId, int autofinish) {
         if (mLocationPermissionsGranted) {
-            Intent intent = new Intent(getApplicationContext(), ActivityRecording.class);
+            Intent intent = new Intent(getApplicationContext(), ActRecording.class);
             intent.putExtra("new-trail", false);
             intent.putExtra("trail-id", trailId);
             intent.putExtra("auto-finish", autofinish);
@@ -99,11 +93,10 @@ public class ActivityStart extends AppCompatActivity {
 
     private void StartTrail(String trailName, int autofinish) {
         if (mLocationPermissionsGranted) {
-            Intent intent = new Intent(getApplicationContext(), ActivityRecording.class);
+            Intent intent = new Intent(getApplicationContext(), ActRecording.class);
             intent.putExtra("new-trail", true);
             intent.putExtra("trail-name", trailName);
             intent.putExtra("auto-finish", autofinish);
-            //intent.putExtra("emergency-contact", et_contact.getText().toString());
             startActivity(intent);
         }
     }

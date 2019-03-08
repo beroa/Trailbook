@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.trailbook.app.recording.ActivityRecording;
+import com.trailbook.app.recording.ActRecording;
 import com.trailbook.app.ActivitySettings;
 import com.trailbook.app.R;
 
@@ -27,12 +27,12 @@ public class FragLauncher extends Fragment {
         TrailView trails = new TrailView();
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.add(R.id.trails_frame, trails).commit();
-        return inflater.inflate(R.layout.activity_launcher, parent, false);
+        return inflater.inflate(R.layout.act_launcher, parent, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        Button settings = (Button) view.findViewById(R.id.btn_settings);
+        Button settings = view.findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,11 +41,11 @@ public class FragLauncher extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.btn_new_trail);
+        FloatingActionButton fab = view.findViewById(R.id.btn_new_trail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivityRecording.class);
+                Intent intent = new Intent(view.getContext(), ActRecording.class);
                 startActivity(intent);
             }
         });

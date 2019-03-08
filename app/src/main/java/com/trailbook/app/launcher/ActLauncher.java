@@ -17,16 +17,16 @@ import com.trailbook.app.ActivitySettings;
 import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
 import com.trailbook.app.database.TrailData;
-import com.trailbook.app.recording.ActivityStart;
-import com.trailbook.app.saved_trail.ActivitySavedTrail;
+import com.trailbook.app.recording.ActStart;
+import com.trailbook.app.saved_trail.ActSavedTrail;
 
-public class ActivityLauncher extends AppCompatActivity implements TrailView.OnListFragmentInteractionListener {
+public class ActLauncher extends AppCompatActivity implements TrailView.OnListFragmentInteractionListener {
     private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launcher);
+        setContentView(R.layout.act_launcher);
         mContext = getApplicationContext();
 
         createNotificationChannel();
@@ -34,13 +34,13 @@ public class ActivityLauncher extends AppCompatActivity implements TrailView.OnL
         int trailCount = AppDatabase.getAppDatabase(mContext).trailDao().countAll();
         if (trailCount == 0) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.trails_frame, new FragLauncherEmpty()).commit();
+            ft.add(R.id.trails_frame, new FragLauncher_Empty()).commit();
         } else {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.trails_frame, new TrailView()).commit();
         }
 
-        Button settings = (Button) findViewById(R.id.btn_settings);
+        Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,11 +49,11 @@ public class ActivityLauncher extends AppCompatActivity implements TrailView.OnL
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btn_new_trail);
+        FloatingActionButton fab = findViewById(R.id.btn_new_trail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, ActivityStart.class);
+                Intent intent = new Intent(mContext, ActStart.class);
                 startActivity(intent);
             }
         });
@@ -61,7 +61,7 @@ public class ActivityLauncher extends AppCompatActivity implements TrailView.OnL
 
     @Override
     public void onListFragmentInteraction(TrailData item) {
-        Intent intent = new Intent(mContext, ActivitySavedTrail.class);
+        Intent intent = new Intent(mContext, ActSavedTrail.class);
         intent.putExtra("trail-id", item.getId());
         startActivity(intent);
     }
@@ -76,7 +76,7 @@ public class ActivityLauncher extends AppCompatActivity implements TrailView.OnL
         int trailCount = AppDatabase.getAppDatabase(mContext).trailDao().countAll();
         if (trailCount == 0) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.trails_frame, new FragLauncherEmpty()).commit();
+            ft.replace(R.id.trails_frame, new FragLauncher_Empty()).commit();
         } else {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.trails_frame, new TrailView()).commit();

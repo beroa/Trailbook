@@ -23,7 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.trailbook.app.recording.ActivityStart;
+import com.trailbook.app.recording.ActStart;
 import com.trailbook.app.recording.Coords;
 import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
@@ -33,7 +33,7 @@ import com.trailbook.app.database.TrailData;
 import java.util.List;
 
 
-public class ActivitySavedTrail extends AppCompatActivity implements RunView.OnListFragmentInteractionListener, OnMapReadyCallback {
+public class ActSavedTrail extends AppCompatActivity implements RunView.OnListFragmentInteractionListener, OnMapReadyCallback {
     private String mTrailId;
     private TrailData trailData;
     private List<RunData> runList;
@@ -46,7 +46,7 @@ public class ActivitySavedTrail extends AppCompatActivity implements RunView.OnL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saved_trail);
+        setContentView(R.layout.act_saved_trail);
 
         Intent intent = getIntent();
         mTrailId = intent.getStringExtra("trail-id");
@@ -69,11 +69,11 @@ public class ActivitySavedTrail extends AppCompatActivity implements RunView.OnL
                 .add(R.id.runs_frame, runs)
                 .commit();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btn_new_run);
+        FloatingActionButton fab = findViewById(R.id.btn_new_run);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivityStart.class);
+                Intent intent = new Intent(view.getContext(), ActStart.class);
                 intent.putExtra("trail-id", mTrailId);
                 startActivity(intent);
             }
