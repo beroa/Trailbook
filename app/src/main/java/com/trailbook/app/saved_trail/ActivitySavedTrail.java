@@ -23,7 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.trailbook.app.recording.ActivityStartRun;
+import com.trailbook.app.recording.ActivityStart;
 import com.trailbook.app.recording.Coords;
 import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
@@ -73,7 +73,7 @@ public class ActivitySavedTrail extends AppCompatActivity implements RunView.OnL
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivityStartRun.class);
+                Intent intent = new Intent(view.getContext(), ActivityStart.class);
                 intent.putExtra("trail-id", mTrailId);
                 startActivity(intent);
             }

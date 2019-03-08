@@ -17,7 +17,7 @@ import com.trailbook.app.ActivitySettings;
 import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
 import com.trailbook.app.database.TrailData;
-import com.trailbook.app.recording.ActivityStartTrail;
+import com.trailbook.app.recording.ActivityStart;
 import com.trailbook.app.saved_trail.ActivitySavedTrail;
 
 public class ActivityLauncher extends AppCompatActivity implements TrailView.OnListFragmentInteractionListener {
@@ -53,7 +53,7 @@ public class ActivityLauncher extends AppCompatActivity implements TrailView.OnL
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, ActivityStartTrail.class);
+                Intent intent = new Intent(mContext, ActivityStart.class);
                 startActivity(intent);
             }
         });

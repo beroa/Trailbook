@@ -40,11 +40,7 @@
             android:screenOrientation="portrait"
             />
 
-        <activity android:name="com.trailbook.app.recording.ActivityStartTrail"
-            android:theme="@style/Theme.NoActionBar"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.trailbook.app.recording.ActivityStartRun"
+        <activity android:name="com.trailbook.app.recording.ActivityStart"
             android:theme="@style/Theme.NoActionBar"
             android:screenOrientation="portrait"/>
 
