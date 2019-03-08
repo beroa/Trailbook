@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.trailbook.app.ActivitySettings;
+import com.trailbook.app.ActSettings;
 import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
 import com.trailbook.app.database.TrailData;
@@ -44,7 +44,7 @@ public class ActLauncher extends AppCompatActivity implements TrailView.OnListFr
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivitySettings.class);
+                Intent intent = new Intent(view.getContext(), ActSettings.class);
                 startActivity(intent);
             }
         });

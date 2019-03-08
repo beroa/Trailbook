@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.trailbook.app.recording.ActRecording;
-import com.trailbook.app.ActivitySettings;
+import com.trailbook.app.ActSettings;
 import com.trailbook.app.R;
 
 /**
@@ -36,7 +36,7 @@ public class FragLauncher extends Fragment {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivitySettings.class);
+                Intent intent = new Intent(view.getContext(), ActSettings.class);
                 startActivity(intent);
             }
         });
