@@ -80,8 +80,10 @@ public class ActRecording extends AppCompatActivity {
         setContentView(R.layout.act_recording);
         mContext = getApplicationContext();
 
+        // initialize notification manager
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        // get sharedPreferences
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         prefDistanceUnits = mSharedPreferences.getString(getString(R.string.pref_key_distance_units), "miles");
         prefGPSInterval = Integer.parseInt(mSharedPreferences.getString(getString(R.string.pref_key_gps_interval), "10000"));
@@ -108,7 +110,6 @@ public class ActRecording extends AppCompatActivity {
             }
         });
 
-
         TextView trailname = findViewById(R.id.tv_recording_name);
         tv_duration = findViewById(R.id.tv_recording_duration);
         tv_distance = findViewById(R.id.tv_recording_distance);
@@ -126,74 +127,21 @@ public class ActRecording extends AppCompatActivity {
         }, 0, 1000);
     }
 
-    private void TimerMethod() {
-        this.runOnUiThread(Timer_Tick);
-    }
-    private Runnable Timer_Tick = new Runnable() {
-        boolean finished = false;
-        public void run() {
-            if (!finished) {
-                long duration = System.currentTimeMillis() - runData.getStartTime();
-                if (duration > mAutoFinish) {
-                    finished = true;
-                    showAutocompletedNotification();
-                    finishTrail();
-                } else {
-                    updateDurationText(duration);
-                    updateSpeedText(duration);
-                }
-            }
-        }
-    };
-
-    private void updateDurationText(long duration) {
-        if (!inBackground) {
-            tv_duration.setText( runData.makeDurationString(duration) );
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        inBackground = true;
     }
 
-    private void updateSpeedText(long duration) {
-        if (!inBackground) {
-            tv_speed.setText(coords.getSpeedString(prefDistanceUnits, duration));
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        inBackground = false;
     }
 
-    private void updateDistanceText() {
-        if (!inBackground) {
-            tv_distance.setText(coords.getDistanceString(prefDistanceUnits));
-        }
-    }
-
-    private void showRecordingNotification() {
-        Intent intent = new Intent(this, ActLauncher.class);
-        intent.setAction(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-        String message = "Currently recording: " + trailData.getTrailName();
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.channel_ID))
-                .setSmallIcon(R.drawable.ic_notifications_green_24dp)
-                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
-                .setContentTitle("Recording Trail")
-                .setContentText(message)
-                .setContentIntent(pi)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        mNotificationManager.notify(NOTIFICATION_ID_RECORDING, builder.build());
-    }
-
-    private void showAutocompletedNotification() {
-        Intent intent = new Intent(this, ActSavedTrail.class);
-        intent.putExtra("trail-id", trailData.getId());
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-        String message = trailData.getTrailName() + " autocompleted.";
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.channel_ID))
-                .setSmallIcon(R.drawable.ic_notifications_green_24dp)
-                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
-                .setContentTitle("Trail Autocompleted")
-                .setContentText(message)
-                .setContentIntent(pi)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
-        mNotificationManager.notify(NOTIFICATION_ID_AUTOCOMPLETED, builder.build());
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "You must end the current trail before you can go back.", Toast.LENGTH_LONG).show();
     }
 
     public void unpackIntent() {
@@ -285,17 +233,16 @@ public class ActRecording extends AppCompatActivity {
         });
     }
 
-    public void saveToDB(RunData runData, TrailData trailData) {
+    public void finishTrail() {
+        // insert coords to db
         if (isNewTrail) {
             AppDatabase.getAppDatabase(mContext).trailDao().insertAll(trailData);
         }
         runData.setEndTime(System.currentTimeMillis());
         runData.setCoords(coords);
         AppDatabase.getAppDatabase(mContext).runDao().insertAll(runData);
-    }
 
-    public void finishTrail() {
-        saveToDB(runData, trailData);
+        // end locationupdates, wakelock and notifications
         if (mFusedLocationClient != null && mLocationCallback != null) {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         }
@@ -306,21 +253,72 @@ public class ActRecording extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        inBackground = true;
+    private void TimerMethod() {
+        this.runOnUiThread(Timer_Tick);
+    }
+    private Runnable Timer_Tick = new Runnable() {
+        boolean finished = false;
+        public void run() {
+            if (!finished) {
+                long duration = System.currentTimeMillis() - runData.getStartTime();
+                if (duration > mAutoFinish) {
+                    finished = true;
+                    showAutocompletedNotification();
+                    finishTrail();
+                } else {
+                    updateDurationText(duration);
+                    updateSpeedText(duration);
+                }
+            }
+        }
+    };
+
+    private void updateDurationText(long duration) {
+        if (!inBackground) {
+            tv_duration.setText( runData.makeDurationString(duration) );
+        }
+    }
+    private void updateSpeedText(long duration) {
+        if (!inBackground) {
+            tv_speed.setText(coords.getSpeedString(prefDistanceUnits, duration));
+        }
+    }
+    private void updateDistanceText() {
+        if (!inBackground) {
+            tv_distance.setText(coords.getDistanceString(prefDistanceUnits));
+        }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        inBackground = false;
+    // show notifications
+    private void showRecordingNotification() {
+        Intent intent = new Intent(this, ActLauncher.class);
+        intent.setAction(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        String message = "Currently recording: " + trailData.getTrailName();
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.channel_ID))
+                .setSmallIcon(R.drawable.ic_notifications_green_24dp)
+                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
+                .setContentTitle("Recording Trail")
+                .setContentText(message)
+                .setContentIntent(pi)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        mNotificationManager.notify(NOTIFICATION_ID_RECORDING, builder.build());
     }
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(getApplicationContext(), "You must end the current trail before you can go back.", Toast.LENGTH_LONG).show();
+    private void showAutocompletedNotification() {
+        Intent intent = new Intent(this, ActSavedTrail.class);
+        intent.putExtra("trail-id", trailData.getId());
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        String message = trailData.getTrailName() + " autocompleted.";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.channel_ID))
+                .setSmallIcon(R.drawable.ic_notifications_green_24dp)
+                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher))
+                .setContentTitle("Trail Autocompleted")
+                .setContentText(message)
+                .setContentIntent(pi)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+        mNotificationManager.notify(NOTIFICATION_ID_AUTOCOMPLETED, builder.build());
     }
 }
 
