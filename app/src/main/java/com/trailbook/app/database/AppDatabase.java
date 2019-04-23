@@ -8,14 +8,14 @@ import android.content.Context;
 
 import java.util.UUID;
 
-@Database(entities = {TrailData.class, RunData.class}, version = 1, exportSchema = false)
+@Database(entities = {TrailData.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
     public abstract TrailDao trailDao();
-    public abstract RunDao runDao();
+//    public abstract RunDao runDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {

@@ -12,6 +12,7 @@ import com.trailbook.app.R;
 import com.trailbook.app.database.AppDatabase;
 import com.trailbook.app.database.RunDao;
 import com.trailbook.app.database.RunData;
+import com.trailbook.app.database.TrailDao;
 import com.trailbook.app.database.TrailData;
 import com.trailbook.app.launcher.TrailView.OnListFragmentInteractionListener;
 
@@ -24,9 +25,9 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class TrailViewAdapter extends RecyclerView.Adapter<TrailViewAdapter.ViewHolder> {
-    private RunDao runDao;
-
-    private RunData rundata;
+//    private RunDao runDao;
+//
+//    private RunData rundata;
     private final List<TrailData> mTrailList;
     private final OnListFragmentInteractionListener mListener;
 
@@ -41,7 +42,7 @@ public class TrailViewAdapter extends RecyclerView.Adapter<TrailViewAdapter.View
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_trail_item, parent, false);
         Context mContext = view.getContext();
-        runDao = AppDatabase.getAppDatabase(mContext).runDao();
+//        trailDao = AppDatabase.getAppDatabase(mContext).trailDao();
         return new ViewHolder(view);
     }
 
@@ -51,8 +52,8 @@ public class TrailViewAdapter extends RecyclerView.Adapter<TrailViewAdapter.View
         holder.mTrailNameView.setText(holder.mItem.getTrailName());
 
         String trailId = holder.mItem.getId();
-        holder.mTrailDateView.setText( runDao.getRecentByTrailId(trailId).getStartTimeDate());
-        holder.mTrailDurationView.setText(runDao.getRecentByTrailId(trailId).getDurationString());
+        holder.mTrailDateView.setText( holder.mItem.getStartTimeDate() );
+        holder.mTrailDurationView.setText( holder.mItem.getDurationString() );
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,14 +77,14 @@ public class TrailViewAdapter extends RecyclerView.Adapter<TrailViewAdapter.View
         final TextView mTrailNameView;
         final TextView mTrailDateView;
         final TextView mTrailDurationView;
-        public TrailData mItem;
+        TrailData mItem;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            mTrailNameView = (TextView) view.findViewById(R.id.tv_trail_list_name);
-            mTrailDateView = (TextView) view.findViewById(R.id.tv_trail_list_date);
-            mTrailDurationView = (TextView) view.findViewById(R.id.tv_trail_list_duration);
+            mTrailNameView = view.findViewById(R.id.tv_trail_list_name);
+            mTrailDateView = view.findViewById(R.id.tv_trail_list_date);
+            mTrailDurationView = view.findViewById(R.id.tv_trail_list_duration);
 
         }
 

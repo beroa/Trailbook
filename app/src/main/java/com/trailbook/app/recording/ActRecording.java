@@ -48,7 +48,7 @@ import java.util.TimerTask;
 public class ActRecording extends AppCompatActivity {
     private Context mContext;
     private TrailData trailData;
-    private RunData runData;
+//    private RunData runData;
     private Coords coords = new Coords();
     private boolean isNewTrail;
 
@@ -93,11 +93,11 @@ public class ActRecording extends AppCompatActivity {
         unpackIntent();
 
         // initialize runData
-        runData = new RunData();
-        String runId = AppDatabase.newUUID();
-        runData.setId(runId);
-        runData.setTrailId(trailData.getId());
-        runData.setStartTime(System.currentTimeMillis());
+//        runData = new RunData();
+//        String runId = AppDatabase.newUUID();
+//        runData.setId(runId);
+//        runData.setTrailId(trailData.getId());
+//        runData.setStartTime(System.currentTimeMillis());
 
         showRecordingNotification();
         startRecording();
@@ -154,16 +154,12 @@ public class ActRecording extends AppCompatActivity {
             mAutoFinish = mAutoFinish * 60 * 60 * 1000;
         }
         String trailId;
-        if (isNewTrail) {
-            trailData = new TrailData();
-            trailId = AppDatabase.newUUID();
-            trailData.setId(trailId);
-            trailData.setTrailName(intent.getStringExtra("trail-name"));
-            trailData.setContact(intent.getStringExtra("emergency-contact"));
-        } else {
-            trailId = intent.getStringExtra("trail-id");
-            trailData = AppDatabase.getAppDatabase(mContext).trailDao().getById(trailId);
-        }
+        trailData = new TrailData();
+        trailId = AppDatabase.newUUID();
+        trailData.setId(trailId);
+        trailData.setTrailName(intent.getStringExtra("trail-name"));
+        trailData.setContact(intent.getStringExtra("emergency-contact"));
+        trailData.setStartTime(System.currentTimeMillis());
     }
 
     public void startRecording() {
@@ -235,12 +231,12 @@ public class ActRecording extends AppCompatActivity {
 
     public void finishTrail() {
         // insert coords to db
-        if (isNewTrail) {
-            AppDatabase.getAppDatabase(mContext).trailDao().insertAll(trailData);
-        }
-        runData.setEndTime(System.currentTimeMillis());
-        runData.setCoords(coords);
-        AppDatabase.getAppDatabase(mContext).runDao().insertAll(runData);
+//        if (isNewTrail) {
+//            AppDatabase.getAppDatabase(mContext).trailDao().insertAll(trailData);
+//        }
+        trailData.setEndTime(System.currentTimeMillis());
+        trailData.setCoords(coords);
+        AppDatabase.getAppDatabase(mContext).trailDao().insertAll(trailData);
 
         // end locationupdates, wakelock and notifications
         if (mFusedLocationClient != null && mLocationCallback != null) {
@@ -260,7 +256,7 @@ public class ActRecording extends AppCompatActivity {
         boolean finished = false;
         public void run() {
             if (!finished) {
-                long duration = System.currentTimeMillis() - runData.getStartTime();
+                long duration = System.currentTimeMillis() - trailData.getStartTime();
                 if (duration > mAutoFinish) {
                     finished = true;
                     showAutocompletedNotification();
@@ -275,7 +271,7 @@ public class ActRecording extends AppCompatActivity {
 
     private void updateDurationText(long duration) {
         if (!inBackground) {
-            tv_duration.setText( runData.makeDurationString(duration) );
+            tv_duration.setText( trailData.makeDurationString(duration) );
         }
     }
     private void updateSpeedText(long duration) {

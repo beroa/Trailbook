@@ -33,10 +33,9 @@ import com.trailbook.app.database.TrailData;
 import java.util.List;
 
 
-public class ActSavedTrail extends AppCompatActivity implements RunView.OnListFragmentInteractionListener, OnMapReadyCallback {
+public class ActSavedTrail extends AppCompatActivity implements OnMapReadyCallback {
     private String mTrailId;
     private TrailData trailData;
-    private List<RunData> runList;
     private int runListIndex = 0;
     private FragTrailDetail fragTrailDetail;
 
@@ -51,70 +50,42 @@ public class ActSavedTrail extends AppCompatActivity implements RunView.OnListFr
         Intent intent = getIntent();
         mTrailId = intent.getStringExtra("trail-id");
         trailData = AppDatabase.getAppDatabase(getApplicationContext()).trailDao().getById(mTrailId);
-        runList = AppDatabase.getAppDatabase(getApplicationContext()).runDao().getRunsByTrailId(mTrailId);
 
         // get google map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapSaved);
         mapFragment.getMapAsync(this);
 
-        // add trail detail fragment
-        fragTrailDetail = FragTrailDetail.newInstance( runList.get(runListIndex).getId() );
+//         add trail detail fragment
+        fragTrailDetail = FragTrailDetail.newInstance( mTrailId );
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.details_frame, fragTrailDetail)
                 .commit();
 
-        // add runview fragment
-        RunView runs = RunView.newInstance(mTrailId);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.runs_frame, runs)
-                .commit();
-
-        FloatingActionButton fab = findViewById(R.id.btn_new_run);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActStart.class);
-                intent.putExtra("trail-id", mTrailId);
-                startActivity(intent);
-            }
-        });
-
         setTitle(trailData.getTrailName());
-
-        TextView tv_new_run = findViewById(R.id.tv_new_run);
-        tv_new_run.bringToFront();
     }
 
-    @Override
-    public void onListFragmentInteraction(RunData item) {
-        // store selection
-        runListIndex = runList.indexOf(item);
-        // update details fragment
-        fragTrailDetail.setTextViews(item);
-        // update polyline
-        setPolylineFromRun(item);
-    }
+//    @Override
+//    public void onListFragmentInteraction(RunData item) {
+//        // store selection
+//        runListIndex = runList.indexOf(item);
+//        // update details fragment
+//        fragTrailDetail.setTextViews(item);
+//        // update polyline
+//        setPolylineFromRun(item);
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        runList = AppDatabase.getAppDatabase(getApplicationContext()).runDao().getRunsByTrailId(mTrailId);
-        replaceRunView(mTrailId);
-    }
-
-    public void replaceRunView(String trailId) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.runs_frame, RunView.newInstance(trailId))
-                .commit();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        setPolylineFromRun( runList.get(runListIndex) );
+        setPolylineFromRun( trailData );
     }
-    public void setPolylineFromRun(RunData runData) {
-        Coords coords = runData.getCoords();
+    public void setPolylineFromRun(TrailData trailData) {
+        Coords coords = trailData.getCoords();
 
         if (polyline != null) {
             polyline.remove();
@@ -152,11 +123,11 @@ public class ActSavedTrail extends AppCompatActivity implements RunView.OnListFr
     }
 
     public void deleteTrail(String trailId) {
-        int runCount = AppDatabase.getAppDatabase(getApplicationContext()).runDao().countRunsForTrailId(trailId);
-        List<RunData> oldRuns = AppDatabase.getAppDatabase(getApplicationContext()).runDao().getRunsByTrailId(trailId);
-        for (int i = 0; i < runCount; i++) {
-            AppDatabase.getAppDatabase(getApplicationContext()).runDao().delete(oldRuns.get(i));
-        }
+//        int runCount = AppDatabase.getAppDatabase(getApplicationContext()).runDao().countRunsForTrailId(trailId);
+//        List<RunData> oldRuns = AppDatabase.getAppDatabase(getApplicationContext()).runDao().getRunsByTrailId(trailId);
+//        for (int i = 0; i < runCount; i++) {
+//            AppDatabase.getAppDatabase(getApplicationContext()).runDao().delete(oldRuns.get(i));
+//        }
         AppDatabase.getAppDatabase(getApplicationContext()).trailDao().delete(trailData);
     }
 

@@ -36,6 +36,8 @@ public interface TrailDao {
     @Delete
     void delete(TrailData trail);
 
+
+
 //    @Query("DELETE FROM traildata")
 //    void nukeTable();
 }
